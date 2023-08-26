@@ -7,7 +7,8 @@
     </head>
     
     <body>
-        <form action="Conexion.php" id="registro" name="registro" method="POST">
+        <!--action="Conexion.php" Esto no va porque ya estas usando AJAX para enviarlo-->
+        <form  id="registro" name="registro" method="POST">
             <section class= "registro">
                 <h4>REGISTRO</h4>
 
@@ -94,7 +95,7 @@
                 <script>
                     document.getElementById("registro").addEventListener("submit", function(event) {
                         event.preventDefault();
-                        
+
                         const divisa = document.getElementById("divisa").value;
                         const numero = document.getElementById("numero").value;
                         const tipoinv= document.getElementById("tipoinv").value;
@@ -108,12 +109,18 @@
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                         xhr.onreadystatechange = function() {
                             if (xhr.readyState === 4 && xhr.status === 200) {
-                                document.getElementById("datosActualizados").innerHTML = xhr.responseText;
+                                //esto que verifica si recibio correctamente los datos el php
+                                if(xhr.responseText === "exito"){
+                                    //esto no se si de verdad lo ocupes ya que no muestras ningun dato nunca
+                                    document.getElementById("datosActualizados").innerHTML = "Guardado exitoso";
+    
+                                }
                             }
                         };
-                        xhr.send("divisa=" + encodeURIComponent(divisa) + "&numero=" + encodeURIComponent(numero) + "&tipoinv=" + encodeURIComponent(tipoinv)
+                        xhr.send("registrar&" + "divisa=" + encodeURIComponent(divisa) + "&numero=" + encodeURIComponent(numero) + "&tipoinv=" + encodeURIComponent(tipoinv)
                          + "&tasa=" + encodeURIComponent(tasa) + "&resultado=" + encodeURIComponent(resultado) + "&fecha=" + encodeURIComponent(fecha)
                           + "&estrategia=" + encodeURIComponent(estrategia));
+
                     });
                 </script>
 
