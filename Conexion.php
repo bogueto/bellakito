@@ -22,16 +22,20 @@
         $insertarDatos = "INSERT INTO `datos`(`DIVISA`, `INVERSION`, `ENTRADA`, `RETORNO`, `RESULTADO`, `FECHA`, `ESTRATEGIA`)
         VALUES ('$DIVISA', '$INVERSION', '$ENTRADA', '$RETORNO', '$RESULTADO', '$FECHA', '$ESTRATEGIA')";
 
-        $ejecutarInsertar = mysqli_query($enlace, $insertarDatos);
+        // $ejecutarInsertar = mysqli_query($enlace, $insertarDatos);
 
-        header("Location: Registro.html");
-
+        
         if ($enlace->query($insertarDatos) === TRUE) {
-            echo "Datos guardados correctamente";
+            //debes de mandar algun code o algo como tal para que tu por tu AJAX lo reconozcas
+            //y puedas redireccionar
+            // header("Location: Registro.html");
+
+            //es como el return en este caso
+            echo "exito";
+
         } else {
             echo "Error: " . $insertarDatos . "<br>" . $enlace->error;
         }
         
-        $enlace->close();
     }
 ?>
