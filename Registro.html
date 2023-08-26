@@ -87,14 +87,16 @@
                     <option value="REVERSION">REVERSIÓN</option>
                 </select>
  
-                <input class="botons" type="submit" name="registrar" value="GUARDAR">
+                <input id="BTN_registro" class="botons" type="submit" name="registrar" value="GUARDAR">
 
                 <div id="datosActualizados">
                 </div>
             
                 <script>
-                    document.getElementById("registro").addEventListener("submit", function(event) {
+
+                        document.getElementById("BTN_registro").addEventListener("click", function(event) {
                         event.preventDefault();
+                        console.log("click en el btn")
 
                         const divisa = document.getElementById("divisa").value;
                         const numero = document.getElementById("numero").value;
@@ -113,8 +115,9 @@
                                 if(xhr.responseText === "exito"){
                                     //esto no se si de verdad lo ocupes ya que no muestras ningun dato nunca
                                     document.getElementById("datosActualizados").innerHTML = "Guardado exitoso";
-    
+                                    
                                 }
+
                             }
                         };
                         xhr.send("registrar&" + "divisa=" + encodeURIComponent(divisa) + "&numero=" + encodeURIComponent(numero) + "&tipoinv=" + encodeURIComponent(tipoinv)
